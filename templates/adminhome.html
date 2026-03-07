@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Home AES_Ai</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: linear-gradient(135deg, #4b79a1, #283e51);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+        }
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        header h2 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.5;
+            max-width: 800px;
+            margin: auto;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background-color: #ff6f61;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff3b2f;
+        }
+        nav {
+            background-color: #222;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 15px 0;
+            display: block;
+        }
+        nav ul li a:hover {
+            color: #ff6f61;
+        }
+        .section-heading {
+            margin-top: 40px;
+        }
+        /* Page borders */
+        .page-border div {
+            position: fixed;
+            background: #283e51;
+            z-index: 10;
+        }
+        .top-border, .bottom-border {
+            height: 5px;
+            width: 100%;
+            left: 0;
+        }
+        .top-border { top: 0; }
+        .bottom-border { bottom: 0; }
+        .left-border, .right-border {
+            width: 5px;
+            height: 100%;
+            top: 0;
+        }
+        .left-border { left: 0; }
+        .right-border { right: 0; }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            header h2 { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-border">
+    <div class="top-border"></div>
+    <div class="right-border"></div>
+    <div class="bottom-border"></div>
+    <div class="left-border"></div>
+</div>
+
+<nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('admin_home') }}">Admin</a></li>
+        <li><a href="{{ url_for('admin_students') }}">Students</a></li>
+        <li><a href="{{ url_for('admin_teachers') }}">Teachers</a></li>
+        <li><a href="{{ url_for('admin_logout') }}">Logout</a></li>
+    </ul>
+</nav>
+
+<header>
+    <div class="section-heading">
+        <h1>Admin Empowerment Platform</h1>
+        <h2>Streamline control with our Admin Empowerment Platform. Let AI shape the future as you manage effortlessly. Whether it's for education, our platform simplifies tasks, providing seamless control.</h2>
+        <a href="#nav-trigger" class="button">START EMPOWERING TODAY</a>
+    </div>
+</header>
+
+</body>
+</html>

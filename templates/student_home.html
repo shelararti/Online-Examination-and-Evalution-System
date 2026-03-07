@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Learning Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #4b79a1, #283e51);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        #nav-main ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        #nav-main ul li {
+            margin: 0 15px;
+        }
+
+        #nav-main ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        #nav-main ul li a:hover {
+            color: #7d2ae8;
+        }
+
+        .section-heading h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .section-heading h2 {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 28px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        .social-icons {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 0;
+        }
+
+        .social-icons li {
+            margin: 0 10px;
+        }
+
+        .social-icons li a {
+            color: #fff;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-icons li a:hover {
+            color: #7d2ae8;
+        }
+
+        /* Banner background simulation */
+        #banner {
+            background: linear-gradient(135deg, #283e51, #4b79a1);
+            padding: 60px 20px;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .section-heading h1 {
+                font-size: 28px;
+            }
+            .section-heading h2 {
+                font-size: 16px;
+            }
+            #nav-main ul {
+                flex-direction: column;
+            }
+            #nav-main ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="banner">
+        <nav id="nav-main">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('student_home') }}">Student</a></li>
+                <li><a href="{{ url_for('student_take_test') }}">Take Test</a></li>
+                <li><a href="{{ url_for('student_view_score') }}">Check Scores</a></li>
+                <li><a href="{{ url_for('student_logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="section-heading">
+            <h1>Student Learning Hub</h1>
+            <h2>Unlock your potential with our Student Learning Hub. Embrace the power of knowledge as you journey through new horizons. Whether it's for exams, exploring new subjects, or honing your skills, our platform makes learning seamless and enjoyable.</h2>
+        </div>
+
+        <a href="#nav-main" class="button">IGNITE YOUR LEARNING JOURNEY</a>
+
+        <ul class="social-icons">
+            <li><a href="https://www.facebook.com/username" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="http://google.com/+username" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="http://www.github.com/username" target="_blank"><i class="fa fa-github"></i></a></li>
+            <li><a href="http://www.instagram.com/username" target="_blank"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+    </header>
+</body>
+</html>

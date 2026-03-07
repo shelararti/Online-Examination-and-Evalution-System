@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AES_ai Admin Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #4b79a1, #283e51);
+            height: 100%;
+        }
+        .card {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+        .container {
+            position: relative;
+            max-width: 500px;
+            width: 100%;
+            background: #fff;
+            padding: 40px 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-radius: 12px;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .input-box {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            position: relative;
+        }
+        .input-box i {
+            position: absolute;
+            font-size: 18px;
+            color: #7d2ae8;
+            left: 10px;
+        }
+        .input-box input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            font-size: 16px;
+            border: 2px solid rgba(0,0,0,0.2);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        .input-box input:focus {
+            border-color: #7d2ae8;
+            outline: none;
+        }
+        .button-64 {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .button-64:hover {
+            opacity: 0.9;
+        }
+        .alert {
+            margin-top: 20px;
+            color: #721c24;
+            background-color: #f8d7da;
+            padding: 12px;
+            border-radius: 6px;
+        }
+        @media (max-width: 500px) {
+            .container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="container">
+            <div class="title">Admin Login</div>
+            <form method="POST" action="{{ url_for('admin_login') }}">
+                <div class="input-box">
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="input-box">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="button-64">Login</button>
+            </form>
+            {% if error %}
+            <div class="alert">{{ error }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

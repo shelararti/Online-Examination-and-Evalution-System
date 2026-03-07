@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Teacher Tests</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+.table-dark-custom {
+    background-color: rgba(33, 37, 41, 0.9);
+    color: #fff;
+}
+.table-dark-custom thead th {
+    background-color: rgba(52, 58, 64, 0.95);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.btn-margin { margin-top: 15px; }
+</style>
+</head>
+<body class="bg-dark text-white">
+
+<div class="container mt-5">
+    <h2 class="mb-4">Teacher Tests</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-dark-custom">
+            <thead>
+                <tr>
+                    <th>Test ID</th>
+                    <th>Test Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if tests %}
+                    {% for test in tests %}
+                    <tr>
+                        <td>{{ test[0] }}</td>
+                        <td>{{ test[1] }}</td>
+                        <td>
+                            <a href="{{ url_for('view_test_questions', test_id=test[0]) }}" class="btn btn-info btn-sm">View Questions</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center">No tests available.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ url_for('admin_teachers') }}" class="btn btn-primary btn-margin">Back to Teacher List</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

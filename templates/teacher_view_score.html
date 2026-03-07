@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher View Scores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+        }
+        .card.bg-dark {
+            background-color: #1e1e1e !important;
+        }
+        .table {
+            background-color: #2a2a2a;
+        }
+        .table th, .table td {
+            color: #fff;
+            border-color: #444;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #242424;
+        }
+        .collapse-header {
+            cursor: pointer;
+            color: #00DDEB;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ url_for('teacher_home') }}">Teacher Panel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('teacher_home') }}">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('teacher_view_score') }}">Score</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('teacher_logout') }}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">Student Scores</h1>
+    <div class="row">
+        {% for student_id, student_data in student_scores.items() %}
+        <div class="col-md-6 mb-4">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="#" data-toggle="modal" data-target="#studentModal-{{ student_id }}">
+                            {{ student_data.student_username }}
+                        </a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="studentModal-{{ student_id }}" tabindex="-1" role="dialog"
+             aria-labelledby="studentModalLabel-{{ student_id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content bg-dark text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="studentModalLabel-{{ student_id }}">{{ student_data.student_username }} Scores</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {% for test_name, scores in student_data.tests.items() %}
+                        <div class="card bg-dark text-white mb-4">
+                            <div class="card-body">
+                                <h6 class="collapse-header" data-toggle="collapse" data-target="#testCollapse-{{ student_id }}-{{ loop.index }}">
+                                    {{ test_name }}
+                                </h6>
+                                <div class="collapse" id="testCollapse-{{ student_id }}-{{ loop.index }}">
+                                    <table class="table table-striped mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th>Question</th>
+                                                <th>Expected Answer</th>
+                                                <th>Student Answer</th>
+                                                <th>Score</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for score in scores %}
+                                            <tr class="data-row bg-dark text-white">
+                                                <td>{{ score.question_text }}</td>
+                                                <td>{{ score.expected_answer }}</td>
+                                                <td>{{ score.student_answer }}</td>
+                                                <td>{{ score.score }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <div class="text-right mt-2">
+                                        <strong>Total Score: {{ scores|sum(attribute='score') }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Optional: You could implement skeleton loaders if data is loading via AJAX
+    });
+</script>
+</body>
+</html>

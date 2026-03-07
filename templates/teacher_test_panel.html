@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Test Panel</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .table {
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+        .table th, .table td {
+            border-color: #333;
+        }
+        .btn-info {
+            background-color: #5B42F3;
+            border-color: #5B42F3;
+        }
+        .btn-info:hover {
+            background-color: #4a33d1;
+            border-color: #4a33d1;
+        }
+        .btn-primary {
+            background-color: #00DDEB;
+            border-color: #00DDEB;
+        }
+        .btn-primary:hover {
+            background-color: #00c1d5;
+            border-color: #00c1d5;
+        }
+        h2 {
+            margin-bottom: 30px;
+        }
+        .container {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Existing Tests</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover mt-3 text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Test ID</th>
+                        <th>Test Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if tests %}
+                        {% for test in tests %}
+                        <tr>
+                            <td>{{ test.test_id }}</td>
+                            <td>{{ test.test_name }}</td>
+                            <td>
+                                <a href="{{ url_for('view_teacher_test_questions', test_id=test.test_id) }}" class="btn btn-info btn-sm">View Questions</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="3">No tests available.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('teacher_home') }}" class="btn btn-primary">Back to Teacher Home</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

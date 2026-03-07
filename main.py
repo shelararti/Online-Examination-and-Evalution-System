@@ -781,12 +781,3 @@ def student_view_score():
         return render_template('student_view_score.html', student_scores=student_scores.values())
     else:
         return redirect(url_for('student_login'))
-
-
-###############################################
-#####################algorithm#################
-
-
-###########################################
-if __name__ == '__main__':
-    app.run(debug=True)

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Teacher</title>
+    <style>
+        /* Reset & body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #4a90e2;
+            padding: 1rem 2rem;
+            color: white;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1rem;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #4a90e2;
+        }
+
+        /* Form styling */
+        form .form-group {
+            margin-bottom: 1.2rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #357abd;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand"><a href="{{ url_for('admin_home') }}">Admin Panel</a></div>
+        <div>
+            <a href="{{ url_for('admin_home') }}">Home</a>
+            <a href="{{ url_for('admin_teachers') }}">Teachers</a>
+            <a href="{{ url_for('admin_students') }}">Students</a>
+            <a href="{{ url_for('admin_logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Add Teacher</h1>
+        <form action="{{ url_for('add_teacher') }}" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Add Teacher</button>
+        </form>
+    </div>
+</body>
+</html>

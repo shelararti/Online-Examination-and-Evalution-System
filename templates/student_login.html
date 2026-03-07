@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Login | AES_ai</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="keywords" content="">
+    <meta name="description" content="Student login page for AES_ai platform">
+
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet">
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: #f0f0f0;
+        }
+
+        /* Wrapper */
+        .card {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            position: relative;
+            max-width: 850px;
+            width: 100%;
+            background: #fff;
+            display: flex;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Cover Panel */
+        .cover {
+            position: relative;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://miro.medium.com/v2/resize:fit:1358/1*GQih-F-GbZrv4ltyu09Olw.gif') center center/cover no-repeat;
+        }
+
+        .cover .text {
+            color: #fff;
+            text-align: center;
+        }
+
+        .cover .text .text-1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .cover .text .text-2 {
+            font-size: 16px;
+        }
+
+        /* Form Panel */
+        .forms {
+            width: 50%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .forms .title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 12px 40px 12px 12px;
+            border: 2px solid rgba(0,0,0,0.2);
+            border-radius: 6px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus {
+            border-color: #7d2ae8;
+            box-shadow: 0 0 8px rgba(125,42,232,0.4);
+            outline: none;
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7d2ae8;
+        }
+
+        .button-64 {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button-64:hover {
+            opacity: 0.9;
+        }
+
+        /* Alert Box */
+        .alert {
+            margin-top: 15px;
+            color: #721c24;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .cover {
+                width: 100%;
+                height: 200px;
+            }
+            .forms {
+                width: 100%;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="container">
+        <!-- Cover Panel -->
+        <div class="cover">
+            <div class="text">
+                <div class="text-1">Every login is a step<br>towards knowledge</div>
+                <div class="text-2">Let's sign in and explore!</div>
+            </div>
+        </div>
+
+        <!-- Form Panel -->
+        <div class="forms">
+            <div class="title">Student Login</div>
+            <form method="POST" action="{{ url_for('student_login') }}">
+                <div class="input-box">
+                    <input type="text" name="username" placeholder="Enter your email" required aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="password" placeholder="Enter your password" required aria-label="Password">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button type="submit" class="button-64">Login</button>
+            </form>
+
+            {% if error %}
+            <div class="alert">{{ error }}</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

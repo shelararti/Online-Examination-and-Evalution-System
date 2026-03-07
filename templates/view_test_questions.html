@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Test Questions</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    body {
+        background-color: #212529;
+        color: #fff;
+    }
+    .table-dark-custom {
+        background-color: rgba(33, 37, 41, 0.9);
+        color: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .table-dark-custom thead th {
+        background-color: rgba(52, 58, 64, 0.95);
+        color: #fff;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+    ul {
+        padding-left: 20px;
+    }
+    li {
+        list-style-type: disc;
+    }
+    .btn-margin {
+        margin-top: 15px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Test Questions</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-dark-custom">
+            <thead>
+                <tr>
+                    <th>Question ID</th>
+                    <th>Question Text</th>
+                    <th>Expected Answer(s)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if questions %}
+                    {% for question in questions %}
+                    <tr>
+                        <td>{{ question[0] }}</td>
+                        <td>{{ question[1] }}</td>
+                        <td>
+                            <ul>
+                                {% for answer in question_answers[question[0]] %}
+                                <li>{{ answer[1] }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center">No questions available.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ url_for('view_teacher_tests', teacher_id=teacher_id) }}" class="btn btn-primary btn-margin">Back to Test List</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

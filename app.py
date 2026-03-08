@@ -167,13 +167,13 @@ def index():
     
     # If no one is logged in, show a homepage with links to login
     else:
-        return render_template('Homepage.html')
+        return render_template('templates/Homepage.html')
     
 # Admin home route
 @app.route('/admin/home')
 def admin_home():
     if 'admin_logged_in' in session:
-        return render_template('adminhome.html')
+        return render_template('templates/admin/adminhome.html')
     else:
         return redirect(url_for('admin_login'))
 
@@ -185,7 +185,7 @@ def admin_students():
         cur.execute("SELECT * FROM Students")
         students = cur.fetchall()
         cur.close()
-        return render_template('admin_students.html', students=students)
+        return render_template('templates/admin/admin_students.html', students=students)
     else:
         return redirect(url_for('admin_login'))
 
@@ -282,7 +282,7 @@ def admin_teachers():
         cur.execute("SELECT * FROM Teachers")
         teachers = cur.fetchall()
         cur.close()
-        return render_template('admin_teachers.html', teachers=teachers)
+        return render_template('templates/admin/admin_teachers.html', teachers=teachers)
     else:
         return redirect(url_for('admin_login'))
 
@@ -299,7 +299,7 @@ def add_teacher():
             cur.close()
             return redirect(url_for('admin_teachers'))
         else:
-            return render_template('add_teacher.html')
+            return render_template('templates/admin/add_teacher.html')
     else:
         return redirect(url_for('admin_login'))
 
@@ -324,7 +324,7 @@ def update_teacher(teacher_id):
             teacher = cur.fetchone()
             cur.close()
             if teacher:
-                return render_template('update_teacher.html', teacher=teacher, teacher_id=teacher_id)
+                return render_template('templates/admin/update_teacher.html', teacher=teacher, teacher_id=teacher_id)
             else:
                 # Handle case where teacher with given ID is not found
                 return "Teacher not found"
@@ -385,7 +385,7 @@ def view_test_questions(test_id):
 
         cur.close()
         # Pass test_id as teacher_id to the template
-        return render_template('view_test_questions.html', teacher_id=test_id, questions=questions, question_answers=question_answers)
+        return render_template('templates/admin/view_test_questions.html', teacher_id=test_id, questions=questions, question_answers=question_answers)
     else:
         return redirect(url_for('admin_login'))
 
@@ -397,7 +397,7 @@ def view_question_answers(question_id):
         cur.execute("SELECT * FROM ExpectedAnswers WHERE question_id = %s", (question_id,))
         answers = cur.fetchall()
         cur.close()
-        return render_template('view_question_answers.html', answers=answers)
+        return render_template('templates/admin/view_question_answers.html', answers=answers)
     else:
         return redirect(url_for('admin_login'))
 
@@ -418,7 +418,7 @@ def admin_login():
         else:
             error = "Invalid credentials"
 
-    return render_template('adminlogin.html', error=error)
+    return render_template('templates/admin/adminlogin.html', error=error)
 
 # Admin logout route
 @app.route('/admin/logout')
@@ -453,7 +453,7 @@ def teacher_login():
         else:
             return render_template('teacher_login.html', error='Invalid username or password')
 
-    return render_template('teacher_login.html')
+    return render_template('templates/teacher/teacher_login.html')
 
 # Teacher home route
 @app.route('/teacher_home', methods=['GET', 'POST'])
@@ -517,7 +517,7 @@ def teacher_home():
         cur.execute("SELECT * FROM Tests WHERE teacher_id = %s", (session['teacher_id'],))
         tests = cur.fetchall()
         cur.close()
-        return render_template('teacher_home.html', tests=tests)
+        return render_template('templates/teacher/teacher_home.html', tests=tests)
     else:
         return redirect(url_for('teacher_login'))
 
@@ -563,7 +563,7 @@ def view_teacher_test_questions(test_id):
             question_answers[question[0]] = answers
 
         cur.close()
-        return render_template('view_teacher_test_questions.html', teacher_id=test_id, questions=questions, question_answers=question_answers)
+        return render_template('templates/teacher/view_teacher_test_questions.html', teacher_id=test_id, questions=questions, question_answers=question_answers)
     else:
         return redirect(url_for('teacher_login'))
 
@@ -600,7 +600,7 @@ def teacher_view_score():
                 'score': score
             })
 
-        return render_template('teacher_view_score.html', student_scores=student_scores)
+        return render_template('templates/teacher/teacher_view_score.html', student_scores=student_scores)
     else:
         return redirect(url_for('teacher_login'))
 
@@ -625,13 +625,13 @@ def student_login():
             session['student_id'] = student[0]  # Assuming student_id is the first column
             return redirect(url_for('student_home'))
         else:
-            return render_template('student_login.html', error='Invalid username or password')
+            return render_template('templates/student/student_login.html', error='Invalid username or password')
 
     return render_template('student_login.html')
 @app.route('/student_home')
 def student_home():
     if 'student_logged_in' in session:
-        return render_template('student_home.html')
+        return render_template('templates/student/student_home.html')
     else:
         return redirect(url_for('student_login'))
 
@@ -682,7 +682,7 @@ def student_take_test():
             # Convert the list of tuples to a list of dictionaries
             tests = [{'test_id': test[0], 'test_name': test[1]} for test in tests]
             
-            return render_template('student_take_test.html', tests=tests)
+            return render_template('templates/student/student_take_test.html', tests=tests)
     else:
         return redirect(url_for('student_login'))
 
@@ -721,7 +721,7 @@ def student_take_test_questions(test_id):
             questions = cur.fetchall()
             cur.close()
 
-            return render_template('student_take_test_questions.html', test=test, questions=questions, test_id=test_id)
+            return render_template('templates/student/student_take_test_questions.html', test=test, questions=questions, test_id=test_id)
     else:
         return redirect(url_for('student_login'))
 
@@ -778,6 +778,6 @@ def student_view_score():
         for test_data in student_scores.values():
             test_data['total_score'] = f"{test_data['total_score']} / {test_data['max_score']}"
 
-        return render_template('student_view_score.html', student_scores=student_scores.values())
+        return render_template('templates/student/student_view_score.html', student_scores=student_scores.values())
     else:
         return redirect(url_for('student_login'))

@@ -1,0 +1,80 @@
+online-examination-evaluation-system/
+│
+├── app.py                     # Main Flask application
+├── config.py                  # Configuration (DB, secret key)
+├── requirements.txt           # Python dependencies
+├── README.md
+│
+├── database/
+│   ├── db_connection.py       # MySQL connection setup
+│   ├── schema.sql             # Database tables
+│   └── seed_data.sql          # Sample data
+│
+├── models/
+│   ├── user_model.py          # User database operations
+│   ├── exam_model.py          # Exam related queries
+│   ├── question_model.py      # Question management
+│   └── result_model.py        # Result & evaluation queries
+│
+├── routes/
+│   ├── auth_routes.py         # Login, register, logout
+│   ├── exam_routes.py         # Create exam, take exam
+│   ├── question_routes.py     # Add/edit/delete questions
+│   ├── result_routes.py       # Results and evaluation
+│   └── admin_routes.py        # Admin panel routes
+│
+├── services/
+│   ├── exam_service.py        # Exam logic
+│   ├── evaluation_service.py  # Auto evaluation logic
+│   └── auth_service.py        # Authentication logic
+│
+├── ml_models/
+│   ├── cheating_detection.py  # ML model for cheating detection
+│   ├── answer_grading.py      # ML-based descriptive answer grading
+│   └── model.pkl              # Trained ML model
+│
+├── static/
+│   ├── css/
+│   │   └── styles.css
+│   │
+│   ├── js/
+│   │   ├── exam.js
+│   │   ├── timer.js
+│   │   └── validation.js
+│   │
+│   ├── images/
+│   │   └── logo.png
+│   │
+│   └── uploads/
+│       └── answer_files/
+│
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   │
+│   ├── auth/
+│   │   ├── login.html
+│   │   └── register.html
+│   │
+│   ├── student/
+│   │   ├── dashboard.html
+│   │   ├── take_exam.html
+│   │   └── result.html
+│   │
+│   ├── admin/
+│   │   ├── dashboard.html
+│   │   ├── create_exam.html
+│   │   ├── add_questions.html
+│   │   └── view_results.html
+│
+├── utils/
+│   ├── helpers.py             # Utility functions
+│   ├── security.py            # Password hashing, tokens
+│   └── validators.py          # Input validation
+│
+├── tests/
+│   ├── test_auth.py
+│   ├── test_exam.py
+│   └── test_evaluation.py
+│
+└── migrations/                # DB migrations (optional if using Alembic)
